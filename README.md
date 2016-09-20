@@ -1,3 +1,3 @@
 # ProjetScrum
 
-The best porject ever made in the world
+The best project ever made in the world
