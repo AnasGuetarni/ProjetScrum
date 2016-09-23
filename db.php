@@ -1,9 +1,9 @@
 <?php 
-$user = "hartleym";
-$pass = "fus9Wn";
+$user = "info241";
+$pass = "YLJ3Ng";
 
 try{
-	$db = new PDO('pgsql:host=localhost;port=5433;dbname=hartleym', $user, $pass);
+	$db = new PDO('pgsql:host=srv-prj;dbname=info241@', $user, $pass);
 }
 
 catch(Exception $e){
