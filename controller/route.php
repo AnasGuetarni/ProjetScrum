@@ -22,7 +22,6 @@ function parameters() {
 
 // Gestion des la route : paramètre r = controller/action
 if (isset(parameters()["r"])) {
-	
 		$route = parameters()["r"];
 	if (strpos($route,"/") === FALSE)
 		list($controller, $action) = array($route, "index");
