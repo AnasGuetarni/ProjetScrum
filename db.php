@@ -9,7 +9,7 @@ try{
 catch(Exception $e){
 	die('Erreur : ' . $e->getMessage());
 }
-
+//re
 //
 function db(){
 	global $db;
