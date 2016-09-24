@@ -9,6 +9,6 @@ class T_e_alias_ali extends Model{
 	public function __construct($id = null)
 	{
 		parent::__construct($id);
-		$hotel = Hotel::findById($this->$hot_id);
+		$this->hotel = Hotel::findById($this->hot_id);
 	}
 }

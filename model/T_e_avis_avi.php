@@ -22,9 +22,9 @@ class T_e_avis_avi extends Model{
 	public function __construct($id = null)
 	{
 		parent::__construct($id);
-		$this->$abonne = Abonne::findById($this->$abo_id);
-		$this->$hotel = Hotel::findById($this->$hot_id);
-		//$this->$visite = Visite::findById($this->$vis_id);
-		//$this->$periode = Periode::findById($this->$per_id);
+		$this->abonne = Abonne::findById($this->abo_id);
+		$this->hotel = Hotel::findById($this->hot_id);
+		//$this->visite = Visite::findById($this->vis_id);
+		//$this->periode = Periode::findById($this->per_id);
 	}
 }

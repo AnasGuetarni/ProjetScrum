@@ -23,6 +23,6 @@ class T_e_abonne_abo extends Model{
 	public function __construct($id = null)
 	{
 		parent::__construct($id);
-		//$pays = Pays::findById($this->$pay_id);
+		//$this->pays = Pays::findById($this->pay_id);
 	}
 }

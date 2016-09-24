@@ -28,8 +28,8 @@ class T_e_hotel_hot extends Model{
 	public function __construct($id = null)
 	{
 		parent::__construct($id);
-		$this->$hotelier = Hotelier::findById($this->$htr_id);
-		//$this->$pays = Pays::findById($this->$pay_id);
-		$this->$prix = Prix::findById($this->$prx_id);
+		$this->hotelier = Hotelier::findById($this->htr_id);
+		//$this->pays = Pays::findById($this->pay_id);
+		//$this->prix = Prix::findById($this->prx_id);
 	}
 }

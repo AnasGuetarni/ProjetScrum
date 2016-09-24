@@ -71,7 +71,7 @@ class Model {
 	
 	public static function findById($id) {
 		$class = get_called_class();
-		return $class($i);
+		return new $class($id);
 	}
 
 
