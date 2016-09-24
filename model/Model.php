@@ -61,6 +61,7 @@ class Model {
 		$get_id_where = substr($classCalling, -3)."_id";
 		$get_id = substr($class, -3)."_id";
 		$st = db()->prepare("select $get_id from $table where $get_id_where=".$id);
+		//echo "select $get_id from $table where $get_id_where=".$id;
 		$st->execute();
 		$list = array();
 		while($row = $st->fetch(PDO::FETCH_ASSOC)) {

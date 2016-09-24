@@ -6,12 +6,16 @@ $parametres = Array(
 			Array('photo_url' , 'URL de la photo', 'input', 'req')
 				);
 
-$options_hot_id = Array(1=>'Hotel1', 
+$id_hotelier = 2;
+$mes_hotels = Hotel::findAllBy("htr", $id_hotelier);
+print_r($mes_hotels);
+$options_hot_id = Array();
+/*foreach($mes hotels1=>'Hotel1', 
 							2 =>'Hotel2', 
 							3 =>'Hotel3', 
 							4 =>'Hotel4', 
 							5 =>'Hotel5', 
-							6 =>'Hotel6');
+							6 =>'Hotel6');*/
 $btnEnregister = "Enregistrer ma photo";
 ?>
 <h2>Ajouter une photo</h2>
