@@ -12,22 +12,25 @@ class HotelierController extends Controller {
 		$this->render("register");
 	}
 	public function add(){
+		$hotels = Hotel::FindAllBy("htr", 3);
+		print_r($hotels);
 		if(isset(parameters()["htr_nom"]))
 		{
-			print_r(parameters());
 			$hotelier = new Hotelier();
 			$ok = true;
 			foreach(parameters() as $key=>$value)
 			{
+				echo $key;
 				if($value == ''){
 					$ok = false;
 					break;
 				}
 				else{
-					$hotelier->$key = $value;
-					$this->render("index");
+					if(substr($key, 0, 2) != 'no' && $key != 'r')
+						$hotelier->$key = $value;
 				}
 			}
+			$this->render("index");
 		} else {
 			$this->render("register");
 		}

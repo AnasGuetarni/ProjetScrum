@@ -10,14 +10,16 @@ class Model {
 	public function __construct($id=null) {
 		$class = get_class($this);
 		$table = strtolower($class);
+		$get_id = substr($class, -3)."_id";
 		if ($id == null) {
-			$st = db()->prepare("insert into $table default values returning id$table");
+			$st = db()->prepare("insert into $table default values returning $get_id");
+			echo "insert into $table default values returning $get_id";
 			$st->execute();
 			$row = $st->fetch();
-			$field = "id".$table;
+			$field = $get_id;
 			$this->$field = $row[$field];
 		} else {
-			$st = db()->prepare("select * from $table where id$table=:id");
+			$st = db()->prepare("select * from $table where $get_id=:id");
 			$st->bindValue(":id", $id);
 			$st->execute();
 			if ($st->rowCount() != 1) {
@@ -25,14 +27,14 @@ class Model {
 			} else {
 				$row = $st->fetch(PDO::FETCH_ASSOC);
 				foreach($row as $field=>$value) {
-					if (substr($field, 0,2) == "id") {
+					/*if (substr($field, 0,2) == "id") {
 						$linkedField = substr($field, 2);
 						$linkedClass = ucfirst($linkedField);
 						if ($linkedClass != get_class($this))
 							$this->$linkedField = new $linkedClass($value);
 						else
 							$this->$field = $value;
-					} else
+					} else*/
 						$this->$field = $value;
 				}
 			}
@@ -43,46 +45,68 @@ class Model {
 	public static function findAll() {
 		$class = get_called_class();
 		$table = strtolower($class);
-		$st = db()->prepare("select id$table from $table");
+		$get_id = substr($class, -3)."_id";
+		$st = db()->prepare("select $get_id from $table");
 		$st->execute();
 		$list = array();
 		while($row = $st->fetch(PDO::FETCH_ASSOC)) {
-			$list[] = new $class($row["id".$table]);
+			$list[] = new $class($row[$get_id]);
 		}
 		return $list;
+	}
+	
+	public static function findAllBy($classCalling, $id) {
+		$class = get_called_class();
+		$table = strtolower($class);
+		$get_id_where = substr($classCalling, -3)."_id";
+		$get_id = substr($class, -3)."_id";
+		$st = db()->prepare("select $get_id from $table where $get_id_where=".$id);
+		$st->execute();
+		$list = array();
+		while($row = $st->fetch(PDO::FETCH_ASSOC)) {
+			$list[] = new $class($row[$get_id]);
+		}
+		return $list;
+	}
+	
+	public static function findById($id) {
+		$class = get_called_class();
+		return $class($i);
 	}
 
 
 	public function __get($fieldName) {
-		$varName = "_".$fieldName;
+		$prefix = substr(get_class($this), -3);
+		$varName = /*$prefix."_".*/$fieldName;
 		if (property_exists(get_class($this), $varName))
 			return $this->$varName;
 		else
-			throw new Exception("Unknown variable: ".$fieldName);
+			throw new Exception("Unknown variable: ".$varName);
 	}
 
 
 	public function __set($fieldName, $value) {
-		$varName = "_".$fieldName;
+		$class = get_class($this);
+		$prefix = substr($class, -3);
+		$varName = /*$prefix."_".*/$fieldName;
 		if ($value != null) {
 			if (property_exists(get_class($this), $varName)) {
 				$this->$varName = $value;
-				$class = get_class($this);
 				$table = strtolower($class);
-				$id = "_id".$fieldName;
-				if (isset($value->$id)) {
-					$st = db()->prepare("update $table set id$fieldName=:val where id$table=:id");
+				$id = $prefix."_id";//.$fieldName;
+				/*if (isset($value->$id)) {
+					$st = db()->prepare("update $table set ".$prefix."_id=:val where ".$prefix."_id=:id");
 					$id = substr($id, 1);
 					$st->bindValue(":val", $value->$id);
-				} else {
-					$st = db()->prepare("update $table set $fieldName=:val where id$table=:id");
+				} else {*/
+					$st = db()->prepare("update $table set $fieldName=:val where $id=:id");
 					$st->bindValue(":val", $value);
-				}
-				$id = "id".$table;
+				//}
+				$id = $prefix.'_id';//"id".$table;
 				$st->bindValue(":id", $this->$id);
 				$st->execute();
 			} else
-				throw new Exception("Unknown variable: ".$fieldName);
+				throw new Exception("Unknown variable: ".$varName . " ($fieldName) class : $class");
 		}
 	}
 
