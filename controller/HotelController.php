@@ -1,6 +1,6 @@
 <?php 
 
-class PhotoController extends Controller {
+class HotelController extends Controller {
 
 	public function __construct()  {
 
@@ -8,29 +8,15 @@ class PhotoController extends Controller {
 
 	
 
-	public function addPhoto() {
-		$this->render("addPhoto");
+	public function add() {
+		$this->render("add");
 	}
-	public function getPhoto(){
-		if(isset(parameters()["photo_url"]))
-		{
-			print_r(parameters());
-			$hotel = new Hotel();
-			$ok = true;
-			foreach(parameters() as $key=>$value)
-			{
-				if($value == ''){
-					$ok = false;
-					break;
-				}
-				else{
-					$hotel->$key = $value;
-					$this->render("index");
-				}
-			}
-		} else {
-			$this->render("addPhoto");
-		}
+	public function index() {
+		$this->render("index");
 	}
+	public function view() {
+		$this->render("add", );
+	}
+	
 
 }

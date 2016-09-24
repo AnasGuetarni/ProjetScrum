@@ -29,7 +29,7 @@ if (isset(parameters()["r"])) {
 		list($controller, $action) = explode("/", $route);
 
 	$controller = ucfirst($controller)."Controller";
-	$c = new $controller();
+	$c = new  $controller();
 	$c->$action();	
 
 } else {
