@@ -20,4 +20,13 @@ class T_e_hotelier_htr extends Model{
 		parent::__construct($id);
 		//$this->pays = Pays::findById($this->pay_id);
 	}
+	public static function checkConnexion($mail, $pass){
+		$query = "select htr_id from t_e_hotelier_htr where htr_mel='".$mail."' and htr_motpasse='".$pass."'";
+		$st = db()->prepare($query);
+		$st->execute();
+		if($st->rowCount() != 1)
+			return false;
+		else 
+			return $st->fetch();
+	}
 }

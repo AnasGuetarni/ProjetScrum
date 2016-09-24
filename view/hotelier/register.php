@@ -15,36 +15,12 @@ $parametres = Array(
 			Array('pay_id', 'Pays', 'select')
 				);
 
-$options_pay_id = Array(1=>'Afghanistan', 
-							2 =>'Afrique du Sud', 
-							3 =>'Albanie', 
-							4 =>'Algérie', 
-							5 =>'Allemagne', 
-							6 =>'Angola', 
-							7 =>'Antigua-et-Barbuda', 
-							8 =>'Arabie saoudite', 
-							9 =>'Argentine', 
-							10 =>'Arménie', 
-							11 =>'Australie', 
-							12 =>'Autriche', 
-							13 =>'Azerbaïdjan', 
-							14 =>'Bahamas', 
-							15 =>'Bahreïn', 
-							16 =>'Bangladesh', 
-							17 =>'Barbade', 
-							18 =>'Belau', 
-							19 =>'Belgique', 
-							20 =>'Belize', 
-							21 =>'Bénin', 
-							22 =>'Bhoutan', 
-							23 =>'Biélorussie', 
-							24 =>'Birmanie', 
-							25 =>'Bolivie', 
-							26 =>'Bosnie-Herzégovine', 
-							27 =>'Botswana', 
-							28 =>'Brésil', 
-							29 =>'Brunei', 
-							30 =>'Bulgarie');
+$pays = Pays::findAll();
+
+$options_pay_id = Array();
+foreach($pays as $unPays){
+	$options_pay_id[$unPays->pay_id] = $unPays->pay_nom;
+}
 $btnEnregister = "S'enregistrer";
 ?>
 <h2>Inscription d'hotelier</h2>
@@ -73,7 +49,7 @@ $btnEnregister = "S'enregistrer";
 			echo "<p><label for='".$data[0]."'>".$data[1]." : </label><input id='".$data[0]."' type='password' name='".$data[0]."' ". $verif ." onFocus='noProblemo(this)'/></p>";
 		}
 		else if($data[2] == 'select'){
-			echo "<p><label for='".$data[0]."'>".$data[1]." : </label><select id='".$data[0]."'>";
+			echo "<p><label for='".$data[0]."'>".$data[1]." : </label><select id='".$data[0]."' name='".$data[0]."'>";
 			$liste = $options_pay_id;
 			foreach($liste as $id=>$pays){
 				echo "<option value=".$id.">$pays</option>";

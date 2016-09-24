@@ -70,6 +70,18 @@ class Model {
 		return $list;
 	}
 	
+	public static function fieldAlreadyExists($field, $value) {
+		$class = get_called_class();
+		$table = strtolower($class);
+		$get_field = substr($class, -3)."_".$field;
+		$st = db()->prepare("select $get_field from $table where $get_field_where=".$value);
+		//echo "select $get_id from $table where $get_id_where=".$id;
+		$st->execute();
+		if($st->rowCount() > 0)
+			return true;
+		return false;
+	}
+	
 	public static function findById($id) {
 		$class = get_called_class();
 		return new $class($id);
