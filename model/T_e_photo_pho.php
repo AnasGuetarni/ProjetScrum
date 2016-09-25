@@ -11,7 +11,7 @@ class T_e_photo_pho extends Model{
 	public function __construct($id = null)
 	{
 		parent::__construct($id);
-		$this->hotel = Hotel::findById($this->hot_id);
+		//$this->hotel = Hotel::findById($this->hot_id);
 		$this->avis = Avis::findById($this->avi_id);
 	}
 }

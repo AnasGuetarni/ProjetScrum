@@ -21,6 +21,7 @@
 				<li><a href="?r=hotel/set">Modifier un hotel</a></li>
 			<?php } if(!(!isset($_SESSION['id_hotelier']) || $_SESSION['id_hotelier'] == '') || !(!isset($_SESSION['id_abonne']) || $_SESSION['id_abonne'] == '')){?>
 			<li><a href="?r=site/logout">Deconnexion</a></li>
+			<li>Connecté en tant que <?php echo Hotelier::findById($_SESSION['id_hotelier'])->htr_nom . "(hotelier)"; ?> </li>
 			<?php } ?>
 		</ul>
 	</nav>

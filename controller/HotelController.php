@@ -15,7 +15,13 @@ class HotelController extends Controller {
 		$this->render("index");
 	}
 	public function view() {
-		$this->render("add", );
+		if(isset(parameters()['id']) && is_numeric(parameters()['id']))
+		{
+			$this->render("view", parameters()['id']);	
+		}
+		else{
+			$this->render("index");
+		}
 	}
 	
 

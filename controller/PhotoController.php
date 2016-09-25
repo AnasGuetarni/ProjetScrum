@@ -12,9 +12,9 @@ class PhotoController extends Controller {
 		$this->render("addPhoto");
 	}
 	public function getPhoto(){
-		if(isset(parameters()["photo_url"]))
+		print_r(parameters());
+		if(isset(parameters()["pho_url"]))
 		{
-			print_r(parameters());
 			$photo = new Photo();
 			$ok = true;
 			foreach(parameters() as $key=>$value)
@@ -24,12 +24,13 @@ class PhotoController extends Controller {
 					break;
 				}
 				else{
-					$photo->$key = $value;
-					$this->render("index");
+					if($key != 'r')
+						$photo->$key = $value;
 				}
 			}
+			$this->render("index");
 		} else {
-			$this->render("addPhoto");
+			//$this->render("addPhoto");
 		}
 	}
 

@@ -23,7 +23,7 @@ class Model {
 			$st->bindValue(":id", $id);
 			$st->execute();
 			if ($st->rowCount() != 1) {
-				throw new Exception("Not in table: ".$table." id: ".$id );
+				return false;
 			} else {
 				$row = $st->fetch(PDO::FETCH_ASSOC);
 				foreach($row as $field=>$value) {

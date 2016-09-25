@@ -1,22 +1,28 @@
-<h2>Index des Hotels</h2>
+<?php 
 
-<p>Mei an rebum semper admodum, ut dico fugit ius. Id wisi utinam democritum nec, nam ad lucilius abhorreant, ne everti conclusionemque mea. No mei bonorum sanctus legimus. Te quidam probatus perpetua usu, et quem numquam noluisse eum. Duo aperiam debitis ex, duo autem euismod salutandi ex.
+$id = $data;
 
-Ne vis rebum graece torquatos, qui eu fugit singulis. Usu malis aeque electram an. Nec quaeque omnesque repudiare ut. Aliquid accusam maiestatis no his, velit facilisis an nec. Nostro scribentur mediocritatem sea ei.
-
-Pri ut simul periculis constituam, homero alienum facilisis no vix. Laoreet maiestatis neglegentur an mei, quem persius no vel. Ei mel nibh summo prompta, cum elitr dicam eu. Eos no legere eligendi, laudem regione singulis vel id. Pro ne accumsan dissentiet, soluta scripserit usu ne.
-
-Cibo dolorem in vix. Affert omittam mediocritatem duo eu. Illud utroque liberavisse mea in, timeam argumentum mea cu, quando verear cotidieque ei mel. Dicat choro imperdiet vis ex, suas suscipit vis et.
-
-Est veri libris civibus et, has quod consectetuer te. Has maiorum consequuntur ea, his sale viris epicuri ea. In eum ludus dolorem, delenit epicuri sententiae nam ne, eos ex atqui liber dolorum. Copiosae definitiones id qui. An duo veri quodsi hendrerit, tibique noluisse sea at.
-
-Id pri sadipscing suscipiantur, nominati scribentur cu nec. Cu eos persius sanctus. Sed idque verear ut. Duo et error alienum singulis, ut eruditi moderatius sit, eam bonorum inciderint eu.
-
-Commune assentior ne vim. Aliquid vocibus adipiscing nec ad. Iudicabit omittantur est eu, vim probatus constituam an. Mei an modo altera saperet. Dicit tibique referrentur te sit.
-
-Alii graece tincidunt has ex, eam iriure fastidii ea. Nonumes vivendo accommodare ex nam, utamur constituto cum ut, nulla intellegat instructior eos ad. Tantas fabulas posidonium at sea, nec lorem vidisse et. Ex scaevola recusabo imperdiet pro.
-
-Vis audiam aperiri praesent et. Mel iusto equidem ei. Ea pri duis evertitur reprimique, eam numquam corrumpit ex. An quo postea corrumpit splendide, homero eripuit quaestio vis ut, no eum nihil dicant officiis. Ei democritum constituam nam. Ea ius error semper aliquando, sed veri mundi at, duo ei eripuit theophrastus deterruisset.
-
-Ex his molestie probatus tincidunt, duo dolorem delicatissimi ex, in aperiri insolens eam. Cu pri alterum sadipscing, melius veritus an vix. His nihil pertinacia te, ea sit ponderum accommodare. Eam tota viderer aliquando et, id sea veri torquatos. Per an enim inermis, putent eruditi quo ne. Id ullum partiendo elaboraret vel. Nec deleniti voluptua et, ubique delectus no sit, ex mei enim errem vivendo.
-      </p>
+$hotel = Hotel::FindById($id);
+if($hotel->hot_id == null)
+{?>
+	<h2>Hotel non trouvé</h2>
+	
+	<p>Nous sommes vraiment désolé mais l'hotel semble ne pas exister...</p>
+	<p><a href='.'>Retourner à la page d'accueil?</a></p>
+<?php	
+} else {
+	echo "<h2>".$hotel->hot_nom."</h2>";
+	echo "<p class='descriptionHotel'>".$hotel->hot_description."</p>";
+	echo "<ul>";
+	echo "<li>Tenu par :".$hotel->hotelier->htr_nom." ".$hotel->hotelier->htr_prenom."</li>";
+	echo "<li>Nombre d'étoiles : ". $hotel->cat_nbetoiles."/5</li>";
+	echo "<li>Prix moyen : ". $hotel->prix->prx_fourchette."</li>";
+	echo "<li>Nombre de chambres : ". $hotel->hot_nbchambres ." chambre</li>";
+	echo "<li>Tel : (+". $hotel->hot_indicatif. ")". $hotel->hot_tel . "</li>";
+	echo "<li>Mail : ". $hotel->hot_mel."</li>";
+	echo "<li>Photos (". count($hotel->photos) .") : ";
+	foreach($hotel->photos as $photo)
+		echo "<img src='".$photo->pho_url."' />";
+	echo "</li>";
+	echo "</ul>";
+}
