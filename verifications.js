@@ -16,7 +16,7 @@ function noProblemo(champs){
 }
 
 function erreur(champs, msg){
-	champs.style.border = "2px solid red";
+	champs.style.border = "2px solid Chocolate";
 }
 
 function verifMail(champs)
