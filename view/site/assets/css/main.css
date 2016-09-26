@@ -1424,3 +1424,27 @@ nav#navigation {
 	font-size: 35px;
 	margin-top: 2%;
 }
+
+div.divConnexion {
+	text-align: center;
+	margin-right: 15%;
+	margin-left: 15%;
+	margin-top: 5%;
+	margin-bottom: 10%;
+}
+
+form#registerHotelierForm {
+	text-align: center;
+	margin-right: 15%;
+	margin-left: 15%;
+	margin-top: 5%;
+	margin-bottom: 10%;
+}
+
+h2#inscriptionHotelier  {
+	text-align: center;
+	margin-top: 3%;
+}
+
+
+
