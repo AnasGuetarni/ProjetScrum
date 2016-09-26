@@ -16,7 +16,6 @@
 					<header>
 						<h1><a href='.'>TripAdvisor</a></h1>
 					</header>
-					<a href="#main" class="more">Learn More</a>
 				</div>
 			</section>
 		<nav id="navigation">
