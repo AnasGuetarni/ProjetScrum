@@ -1,4 +1,7 @@
 <?php 
+
+$id=$data;
+$hotel = Hotel::findById($id);
 $fourchette_prix = T_r_fourchetteprix_prx::findAll();
 $fourchette_prix_tri = Array();
 foreach($fourchette_prix as $value)
@@ -33,27 +36,27 @@ $parametres = Array(
 $btnEnregister = "Enregistrer l'hotel";
 
 ?>
-<h2>Enregistrer un hotel</h2>
+<h2>Modifier un hotel</h2>
 
-<form action='?r=hotel/register' method='POST' id='registerHotelForm'>
+<form action='?r=hotel/set' method='POST' id='registerHotelForm'>
 <?php 
 	foreach($parametres as $data=>$text)
 	{
 	switch($text[2])
 	{
 		case "input_box":
-			echo "<p><label for='$text[0]'>$text[1] : </label><input id='$text[0]' type='text' name='$text[0]' required/></p>";
+			echo "<p><label for='$text[0]'>$text[1] : </label><input id='$text[0]' type='text' name='$text[0]' value='". $hotel->$text[0]."'/></p>";
 		break;
 		
 		case "textarea":
-			echo "<p><label for='$text[0]'>$text[1] : </label><$text[2] id='$text[0]' type='text' name='$text[0]' required/></$text[2]></p>";
+			echo "<p><label for='$text[0]'>$text[1] : </label><$text[2] id='$text[0]' type='text' name='$text[0]'>". $hotel->$text[0]."</$text[2]></p>";
 		break;
 		
 		case "combobox":
-			echo "<p><label form='$text[0]'>$text[1] : <select name='$text[0]' id='$text[0]' required>";
+			echo "<p><label form='$text[0]'>$text[1] : <select name='$text[0]' id='$text[0]'>";
 				foreach($text[3] as $key=>$value)
 				{
-					echo "<option value='".($key+1)."' id='".($key+1)."'>$value</option>";
+					echo "<option value='".($key+1)."' id='".($key+1)."' ".($hotel->$text[0]==$key?"selected":"").">$value</option>";
 				}
 			echo "</select>";
 		break;

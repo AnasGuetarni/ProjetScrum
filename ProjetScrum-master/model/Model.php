@@ -75,7 +75,7 @@ class Model {
 		$class = get_called_class();
 		$table = strtolower($class);
 		$get_field = substr($class, -3)."_".$field;
-		$st = db()->prepare("select $get_field from $table where $get_field_where=".$value);
+		$st = db()->prepare("select $get_field from $table where $get_field=".$value);
 		//echo "select $get_id from $table where $get_id_where=".$id;
 		$st->execute();
 		if($st->rowCount() > 0)

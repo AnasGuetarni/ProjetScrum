@@ -1,5 +1,4 @@
 <?php 
-
 $id = $data;
 
 $hotel = Hotel::FindById($id);
@@ -9,7 +8,7 @@ if($hotel->hot_id == null)
 	
 	<p>Nous sommes vraiment désolé mais l'hotel semble ne pas exister...</p>
 	<p><a href='.'>Retourner à la page d'accueil?</a></p>
-<?php	
+<?php
 } else {
 	echo "<h2>".$hotel->hot_nom."</h2>";
 	echo "<p class='descriptionHotel'>".$hotel->hot_description."</p>";
@@ -25,4 +24,6 @@ if($hotel->hot_id == null)
 		echo "<img src='".$photo->pho_url."' />";
 	echo "</li>";
 	echo "</ul>";
+	
+	echo "<p><a href='?r=hotel/set&id=".$hotel->hot_id."'>Modifier mon hotel</a></p>";
 }

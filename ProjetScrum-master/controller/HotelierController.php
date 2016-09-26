@@ -12,7 +12,7 @@ class HotelierController extends Controller {
 		$this->render("register");
 	}
 	public function add(){
-		if(Hotelier::fieldAlreadyExists('mail', parameters()['htr_mail'])){
+		if(Hotelier::fieldAlreadyExists('mail', parameters()['htr_mel'])){
 			$this->render("register", "L'adresse mail est deja utilisée");
 		}
 		if(isset(parameters()["htr_nom"]))
@@ -22,14 +22,14 @@ class HotelierController extends Controller {
 			foreach(parameters() as $key=>$value)
 			{
 				echo $key;
-				if($value == ''){
+				/*if($value == ''){
 					$ok = false;
 					break;
 				}
-				else{
+				else{*/
 					if(substr($key, 0, 2) != 'no' && $key != 'r')
 						$hotelier->$key = $value;
-				}
+				//}
 				$_SESSION['id_hotelier'] = $hotelier->htr_id;
 			}
 			$this->render("index");
@@ -41,5 +41,6 @@ class HotelierController extends Controller {
 	public function addPhoto($idHotel) {
 		$this->render("addPhoto", $idHotel);
 	}
+	
 
 }
