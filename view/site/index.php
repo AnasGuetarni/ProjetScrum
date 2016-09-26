@@ -1,3 +1,7 @@
+<?php 
+
+include_once "view/hotel/index.php";
+/*
 <h2 id="bienvenue">Bienvenue</h2>
 	<!-- Main -->
 	<div id="main">
@@ -54,7 +58,7 @@
 					</div>
 				</div>
 
-				<div class="box">
+				+<div class="box">
 					<a href="https://youtu.be/s6zR2T9vn2c" class="image fit"><img src="view/site/images/pic01.jpg" alt="" /></a>
 					<div class="inner">
 						<h3>Comment faire une page statique (exemple : page "à propos", page "contact", ...) ?</h3>
@@ -165,3 +169,4 @@
 
 	</body>
 </html>
+*/
