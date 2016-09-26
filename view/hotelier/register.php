@@ -23,7 +23,7 @@ foreach($pays as $unPays){
 }
 $btnEnregister = "S'enregistrer";
 ?>
-<h2>Inscription d'hotelier</h2>
+<h2 id="inscriptionHotelier">Inscription d'hotelier</h2>
 
 <form action='?r=hotelier/add' method='POST' id='registerHotelierForm' onSubmit='return verifForm(this)'>
 <?php 
