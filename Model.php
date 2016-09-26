@@ -50,8 +50,7 @@ class Model {
 		$st->execute();
 		$list = array();
 		while($row = $st->fetch(PDO::FETCH_ASSOC)) {
-			if($row[$get_id] != null)
-				$list[] = new $class($row[$get_id]);
+			$list[] = new $class($row[$get_id]);
 		}
 		return $list;
 	}
@@ -86,6 +85,8 @@ class Model {
 	
 	public static function findById($id) {
 		$class = get_called_class();
+		if($id == null)
+			return false;
 		return new $class($id);
 	}
 
